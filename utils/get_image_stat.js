@@ -73,7 +73,7 @@ export function addAnImagePath(thePath) {
         const conCatPath = `${dir}/${fileOrFolder}`;
         const stat = statSync(conCatPath);
         if (stat.isDirectory()) {
-          list = recursiveList(conCatPath, list);
+          list = recursiveList(conCatPath, list.filter(o => o.path.indexOf('@eaDir') === -1)); // Patch for Synology NAS
         } else if (fileOrFolder.match(/\.gif|\.jpg|\.png|\.jpeg/g)) {
           // console.log({ stat });
           const path = conCatPath.substring(basePath.length + 1);
